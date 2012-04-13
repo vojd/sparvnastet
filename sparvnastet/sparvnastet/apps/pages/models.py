@@ -9,10 +9,11 @@ from tagging.fields import TagField
 class Page(models.Model):
     """ Represents a blog page """
     title = models.CharField(max_length=255, verbose_name=_('title'))
+    slug = models.SlugField(max_length=255, verbose_name=_('slug'))
     content = models.TextField(verbose_name=_('content'))
     category = models.ForeignKey('Category')
     published = models.BooleanField(default=False)
-    tags = TagField(verbose_name=_('tags for article'))
+    tags = TagField(verbose_name=_('tags'))
     created = models.DateTimeField(verbose_name=_('created'), auto_now_add=True)
     modified = models.DateTimeField(verbose_name=_('modified'), auto_now=True)
 

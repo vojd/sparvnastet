@@ -7,8 +7,7 @@ __author__ = 'mathias'
 from django.contrib.admin.sites import site
 
 class PageAdmin(admin.ModelAdmin):
-    #exclude = ['created',  ]
-    pass
+    prepopulated_fields = {'slug' : ('title', )}
 
 site.register(Page, PageAdmin)
 site.register(Category)
