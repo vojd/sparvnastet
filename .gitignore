@@ -1,0 +1,6 @@
+*.pyc
+.idea/
+.DS_Store
+.sass-cache
+*swp
+static/CACHE/
