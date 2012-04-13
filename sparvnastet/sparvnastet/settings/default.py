@@ -1,4 +1,5 @@
 # Django settings for sparvnastet project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,12 +12,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'sparvnastet/etc/database.sqlite',                      # Or path to database file if using sqlite3.
+        #'USER': '',                      # Not used with sqlite3.
+        #'PASSWORD': '',                  # Not used with sqlite3.
+        #'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        #'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -31,7 +32,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'sv-se'
 
 SITE_ID = 1
 
@@ -45,7 +46,17 @@ USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
+PROJECT_ROOT        = os.path.join(os.path.dirname(__file__), '../')
+STATIC_ROOT         = os.path.join(PROJECT_ROOT, 'static')
+STATIC_URL          = '/static/'
+STATIC_THEME_URL    = os.path.join(STATIC_URL, 'shirtstheme')
+# absolute filesystem path to media files
+MEDIA_ROOT          = os.path.join(PROJECT_ROOT, 'media')
+#MEDIA_ROOT = 'hej'
+# url for MEDIA_ROOT files
+MEDIA_URL           = '/media/'
 
+"""
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ''
@@ -64,6 +75,8 @@ STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
+"""
+UPLOAD_DIR = MEDIA_ROOT + 'upload/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -100,6 +113,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
+    "django.core.context_processors.i18n",
+    'django.contrib.messages.context_processors.messages',
+)
+
 ROOT_URLCONF = 'sparvnastet.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -112,6 +132,9 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'grappelli.dashboard',
+    'grappelli',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -119,9 +142,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'south',
+    'tagging',
+
+    # our apps
+    'sparvnastet.apps.pages',
 )
 
 # A sample logging configuration. The only tangible logging
