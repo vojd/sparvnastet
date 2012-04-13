@@ -56,7 +56,7 @@ class AjaxTemplateView(TemplateView):
             **response_kwargs
         )
 
-class PageView(AjaxTemplateView):
+class PageView(DetailView):
     # Display a shop page
     model = Page
     template_name = 'page.html'
