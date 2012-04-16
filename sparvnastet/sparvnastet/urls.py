@@ -11,11 +11,11 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     #url(r'^/', include('sparvnastet.apps.pages.urls')),
-    url(r'^(?P<slug>[-\w]*)$', PageView.as_view(), name="page_view"),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': os.path.join(DIRNAME, "media"), 'show_indexes': True }),
-    url(r'^secretadminplace/', include(admin.site.urls)),
-)
 
+    url(r'^secretadminplace/', include(admin.site.urls)),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+     {'document_root': os.path.join(DIRNAME, "media"), 'show_indexes': True }),
+    url(r'^p/(?P<slug>[-\w]*)/$', PageView.as_view(), name="page_view"),
+)
 
 urlpatterns += staticfiles_urlpatterns()

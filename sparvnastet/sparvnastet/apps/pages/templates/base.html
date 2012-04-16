@@ -3,46 +3,14 @@
 <html>
 <head>
     <title>{% block pagetitle %}{% endblock %}</title>
-    {% block extrahead %}{% endblock %}
 
-    <style type="text/css">
-        body{
-            background: #303030;
-            font-family: "Droid Sans",sans-serif;
-            
-        }
-        #wrapper{
-            width: 100%;
-            z-index: 1;
-        }
-        #sidecontent{
-            width: 250px;
-            float: left;
-            background: #e0e;
-        }
-        #content{
-            max-width: 940px;
-            background: #39f;
-            overflow: hidden;
-            padding: 16px;
-            z-index: 2;
-        }
-        #sidebar{
-            width: 150px;
-            background: #888;
-        }
-        #canvas{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px solid #fff;
-            background: none;
-            z-index: -1;
-            
-        }
-    </style>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/crafty-min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/world.js"></script>
+    {% block extrahead %}{% endblock %}
 
 
 </head>
@@ -54,7 +22,9 @@
         Thank you, come again.
     </canvas>
     <div id="wrapper">
-        <div id="sidecontent">side content</div>
+        <div id="sidecontent">
+            <img src="/media/img/sparrow_01.png"/>
+        </div>
         <!-- main structure -->
         <div id="content">
             {% block content %}{% endblock %}
@@ -63,30 +33,3 @@
     </div>
 </body>
 </html>
-
-<script type="text/javascript">
-
-    var sparrow = {
-        'current_frame' : 0,
-        'x' : 0,
-        'y' : 0
-    };
-
-    function drawSparrow(context, sprite){
-        context.save();
-        // draw happy sparrow
-        context.restore();
-    }
-    
-    var canvas = document.getElementById('canvas');
-    var c = canvas.getContext('2d');
-    console.log(c);
-    c.save();
-
-    c.fillStyle = "rgb(200, 0, 0)";
-    c.fillRect(10, 10, 50, 50 );
-
-    c.restore();
-
-
-</script>
