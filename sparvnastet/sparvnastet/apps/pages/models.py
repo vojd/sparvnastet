@@ -1,5 +1,7 @@
 # -*-coding:utf8 -*-
+from django.core.urlresolvers import reverse
 from sparvnastet.settings.default import UPLOAD_DIR
+
 
 __author__ = 'mathias'
 from django.db import models
@@ -16,6 +18,9 @@ class Page(models.Model):
     tags = TagField(verbose_name=_('tags'))
     created = models.DateTimeField(verbose_name=_('created'), auto_now_add=True)
     modified = models.DateTimeField(verbose_name=_('modified'), auto_now=True)
+
+    def get_absolute_url(self):
+        return u'/p/%s' % self.slug
 
     def __unicode__(self):
         return u"%s" % self.title
