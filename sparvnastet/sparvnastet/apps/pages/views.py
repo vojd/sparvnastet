@@ -1,3 +1,4 @@
+from django.utils.safestring import mark_safe
 from sparvnastet.apps.pages.models import Page
 
 __author__ = 'mathias'
@@ -44,7 +45,7 @@ class AjaxTemplateView(TemplateView):
             return_str = render_block_to_string(
                 self.get_template_names(),
                 self.block_to_render,
-                context
+                mark_safe(context)
             )
             #print 'return_str', return_str
             return HttpResponse(return_str)
@@ -57,7 +58,6 @@ class AjaxTemplateView(TemplateView):
         )
 
 class PageView(DetailView):
-    # Display a shop page
     model = Page
     template_name = 'page.html'
 

@@ -5,27 +5,26 @@
     <title>{% block pagetitle %}{% endblock %}</title>
 
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Press+Start+2P'rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/crafty-min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/world.js"></script>
+
+
+    <!--<script type="text/javascript" src="{{ STATIC_URL }}js/crafty-min.js"></script>-->
+    <!--<script type="text/javascript" src="{{ STATIC_URL }}js/world.js"></script>-->
     {% block extrahead %}{% endblock %}
 
 
 </head>
 <body>
 
-    
-    <canvas id="canvas">
-        Ooops you don't have Canvas support in your browser.
-        Thank you, come again.
-    </canvas>
     <div id="wrapper">
         <div id="sidecontent">
             <img src="/media/img/sparv2.png"/>
         </div>
         <!-- main structure -->
         <div id="content">
+            <h1>Sparvnästet</h1>
             {% block content %}{% endblock %}
         </div>
         <div id="sidebar">{% block sidebar %}{% endblock %}</div>
